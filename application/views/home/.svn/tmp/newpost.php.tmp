@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<?php 	
+		$this->common->load_css(array('bootstrap', 'bootstrap-responsive', 'wmd', 'style', 'prettify'));
+		$this->common->load_js(array('jquery', 'bootstrap','prettify','application'));
+?>
+<script type="text/javascript" src="/static/js/editor/kindeditor.js"></script>
+<script type="text/javascript" src="/static/js/editor/lang/zh_CN.js"></script>
+<script>
+        var editor;
+        KindEditor.ready(function(K) {
+                editor = K.create('#postedit',{
+                    uploadJson : '<?=site_url(array('home', 'upload'))?>',
+                    fileManagerJson : '<?=site_url(array('home', 'upload'))?>',
+                    allowFileManager : false,
+                    filePostName : 'filedata'
+                });
+                // 取得HTML内容
+                /*html = editor.html();
+
+                // 同步数据后可以直接取得textarea的value
+                editor.sync();
+                html = document.getElementById('postedit').value; // 原生API
+                html = K('#postedit').val(); // KindEditor Node API
+                html = $('#postedit').val(); // jQuery
+
+                // 设置HTML内容
+                editor.html('HTML内容');*/
+                
+                                                             
+        });
+</script>
+
+<link rel="shortcut icon" href="/static/favicon.ico">
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <form action="/signin" method="post" class="form-inline pull-right login-form">
+      <input type="text" class="input-small" placeholder="用户名" name="username">
+      <input type="password" class="input-small" placeholder="密码" name="password">
+      <button type="submit" class="btn btn-primary">登录</button>
+      <p style="padding-top: 20px;"> <a href="/forgot_password">忘记密码</a> | <a href="/signup">注册</a> </p>
+    </form>
+    <div class="header-box"> <a class="brand" href="/"><img src="/static/img/logo.png" width="176" height="68" style="margin-top:-15px" /></a>
+      <nav class="pull-left">
+        <ul>
+          <li><a href="/">未解决</a></li>
+          <li><a href="/articles">进行中</a></li>
+          <li><a href="/packages">已完成</a></li>
+          <li><a href="http://tour.golang.tc" target="_blank">已关闭 </a></li>
+          <li><a href="http://tour.golang.tc" target="_blank">已取消 </a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+<div class="container">
+  <div class="row">
+    <div class="span9">
+      <ul class="breadcrumb">
+        <li> <a href="/"><i class="icon-home"></i> 首页</a> <span class="divider">/</span> </li>
+        <li class="active">文章</li>
+      </ul>
+     <form method="post" class="form-vertical" id="topic-form">
+ 
+    </div>
+     <div class="row">
+    <div class="span9">
+      <div class="content">
+       
+          <fieldset>
+      
+            <div class="control-group">
+              <label class="control-label" for="title">标题</label>
+              <div class="controls">
+                <textarea id="title" name="title" rows="1" class="span8"></textarea>
+              </div>
+            </div>
+            <div class="wmd-panel">
+            
+				<textarea id="postedit" name="content" style="width:700px;height:300px;">
+				
+				</textarea>
+			
+            </div>
+            <div class="control-group">
+              <div class="controls">
+                <label class="control-label" for="node" style="float:left; padding-right:55px;">状态 </label>
+                <select id="node" name="status">
+                  <option value="1">未解决</option>
+                  <option value="2">进行中</option>
+                  <option value="3">已完成</option>
+                  <option value="4">已关闭</option>
+                  <option value="5">已取消</option>
+                </select>
+              </div>
+              <div class="controls">
+                <label class="control-label" for="node" style="float:left; padding-right:40px;">处理人</label> 
+                
+                 <select id="node" name="processorid">
+                  <?php foreach ($userdata as $row):?>
+                  	<option value="<?php echo $row->id?>"><?php echo $row->username?></option>
+                  	 <?php endforeach;?>    
+                   </select>	
+                 
+              </div>
+              <div class="controls">
+                <label class="control-label" for="node" style="float:left; padding-right:55px;">程度</label>
+
+                <select id="node" name="priority">
+                  <option value="1">紧急</option>
+                  <option value="2">正常</option>
+                  <option value="3">计划</option>
+                </select>
+              </div>
+               <button type="submit" class="btn btn-primary" style=" margin-left:250px;">提交</button>
+            </div>
+   
+          </fieldset>
+        </form>
+      </div>
+      <script type="text/javascript" src="http://gopher.qiniudn.com/static/js/Markdown.Converter.js"></script> 
+      <script type="text/javascript" src="http://gopher.qiniudn.com/static/js/Markdown.Editor.js"></script> 
+      <script type="text/javascript" src="http://gopher.qiniudn.com/static/js/Markdown.Sanitizer.js"></script> 
+      <script>
+	(function () {
+		var converter1 = Markdown.getSanitizingConverter();
+		var editor1 = new Markdown.Editor(converter1);
+		editor1.run();
+	})();
+	
+	$('#topic-form').submit(function () {
+		$('#html').val($('#wmd-preview').html());
+		
+		return true;
+	});
+</script> 
+   
+    <div class="span3">
+    
+      
+   
+        <div class="clearfix"></div>
+        <style type="text/css">
+			.github-box .github-box-title .github-stats {
+				top: 40px;
+			}
+			.github-box .github-box-title h3 {
+				padding: 10px 10px 20px 30px;
+			}
+			.github-box .github-box-content .link {
+				display: none;
+			}
+			.github-box .github-box-download {
+				height: 45px;
+			}
+			.github-box .github-box-download .download {
+				top: 35px;
+			}
+		</style>
+      </div>
+      <script type="text/javascript" src="http://gopher.qiniudn.com/static/js/jquery.githubRepoWidget.min.js"></script>
+  
+  
+    
+  
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p> </p>
+    <ul class="footer-links">
+      <li><a href="/about">关于</a> </li>
+      <li class="muted">·</li>
+      <li><a href="/faq">FAQ</a></li>
+      <li class="muted">·</li>
+      <li><a href="/go/feedback">反馈</a></li>
+      <li class="muted">·</li>
+      <li><a href="https://github.com/jimmykuu/gopher" target="_blank">GitHub</a></li>
+    </ul>
+    <p></p>
+    <p>©2012-2013 golang.tc</p>
+    <p>Website built by <a href="https://github.com/jimmykuu/gopher" target="_blank">Gopher</a>, powered by <a href="http://golang.org/" target="_blank">Golang</a>, <a href="http://www.mongodb.org/" target="_blank">MongoDB</a>.</p>
+    <p>Based on <a target="_blank" href="http://twitter.github.com/bootstrap/">Bootstrap</a>. Icons from <a target="_blank" href="http://glyphicons.com/">Glyphicons</a>.</p>
+    <p style="text-align: center; vertical-align: middle;"> <a href="http://www.golang.org" target="_blank"><img src="http://gopher.qiniudn.com/static/img/Golang.png"></a> <a href="http://www.mongodb.org/" target="_blank"><img src="http://gopher.qiniudn.com/static/img/PoweredMongoDBbeige50.png"></a> <a href="http://www.linode.com/?r=2bbf272ff1d5457dfcc269442534b20cae7b7fc4" target="_blank"><img src="http://gopher.qiniudn.com/static/img/linode.png"></a> </p>
+  </div>
+</footer>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe96880022a0f1291d50e191121307a60' type='text/javascript'%3E%3C/script%3E"));
+</script><script src=" http://hm.baidu.com/h.js?e96880022a0f1291d50e191121307a60" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=e96880022a0f1291d50e191121307a60" target="_blank"><img border="0" src="http://eiv.baidu.com/hmt/icon/21.gif" width="20" height="20"></a>
+</body>
+</html>

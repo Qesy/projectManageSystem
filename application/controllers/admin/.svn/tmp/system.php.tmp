@@ -1,0 +1,20 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class System extends CI_Controller {
+	
+	function __construct(){
+		parent::__construct();
+	}
+	
+	public function index(){
+		$this->load->model('system_model', 'system');
+		$result = $this->system->select(array('id' => 1));
+		var_dump($result);
+		//$this->load->view('admin/system/index');
+	}
+	
+	public function login(){
+		//$this->load->view('admin/system/index');
+		echo 'login';
+	}
+}
