@@ -52,7 +52,7 @@
 
 			<a class="btn pull-right <?=$classColor?>"><?php echo $statusArr[$row->status]?></a>	
 			
-			<a href="<?=site_url(array('home', 'details',$row->id))?>" class="title"><?php echo $row->title ?></a>
+			<a href="<?=site_url(array('home', 'details',$row->id))?>" class="title"><?php echo $row->title ?></a> &nbsp;• &nbsp;<span <?=$row->priority==1 ? 'style="color:red;' : 'style="color:black;' ?>font-weight:bold;font-size:14px"><?= $this->priorityArr[$row->priority] ?></span>
 			<div class="space"></div>
 			<div class="info">
 				<a class="label" >处理人</a> • 

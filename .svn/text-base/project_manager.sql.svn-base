@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `pj_mail` (
 --
 
 INSERT INTO `pj_mail` (`id`, `smtp_host`, `smtp_user`, `smtp_pass`, `smtp_port`) VALUES
-(1, 'smtp.163.com', 'qesy@163.com', '5771821122', 25);
+(1, 'smtp.qq.com', 'admin@qq.com', '123456', 25);
 
 -- --------------------------------------------------------
 
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `pj_system` (
 --
 
 INSERT INTO `pj_system` (`id`, `project_name`, `logo`, `copyright`, `is_open_reg`) VALUES
-(1, '酒悦久项目管理系统', '/static/img/logo.png', '酒悦久项目管理系统', 0);
+(1, '项目管理系统', '/static/img/logo.png', '项目管理系统', 0);
 
 -- --------------------------------------------------------
 
@@ -73,7 +73,7 @@ INSERT INTO `pj_system` (`id`, `project_name`, `logo`, `copyright`, `is_open_reg
 CREATE TABLE IF NOT EXISTS `pj_ticket` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(200) NOT NULL,
-  `content` varchar(255) NOT NULL,
+  `content` text NOT NULL,
   `post_user_id` int(11) NOT NULL,
   `process_user_id` int(11) NOT NULL,
   `status` int(11) NOT NULL,

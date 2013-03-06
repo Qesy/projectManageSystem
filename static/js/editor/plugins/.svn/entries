@@ -1,7 +1,7 @@
 10
 
 dir
-162
+164
 https://qzy1122.meibu.net/svn/projectManageSystem/static/js/editor/plugins
 https://qzy1122.meibu.net/svn/projectManageSystem
 
@@ -32,16 +32,16 @@ dir
 lineheight
 dir
 
-preview
-dir
-
 pagebreak
 dir
 
-baidumap
+preview
 dir
 
 image
+dir
+
+baidumap
 dir
 
 quickformat
@@ -50,19 +50,19 @@ dir
 table
 dir
 
-flash
+multiimage
 dir
 
 link
 dir
 
-multiimage
-dir
-
-plainpaste
+flash
 dir
 
 emoticons
+dir
+
+plainpaste
 dir
 
 autoheight

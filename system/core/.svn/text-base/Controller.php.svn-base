@@ -36,6 +36,7 @@ class CI_Controller {
 	public $userName;
 	public $workgroup;
 	public $email;
+	public $priorityArr = array('1' => '紧急', '2' => '正常', '3' => '计划');
 
 	/**
 	 * Constructor
